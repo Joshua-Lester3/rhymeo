@@ -1,4 +1,6 @@
-﻿namespace Rhyme;
+﻿using Rhyme.FileIO;
+
+namespace Rhyme;
 
 public class Program
 {
