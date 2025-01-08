@@ -6,7 +6,7 @@ public class FileUtils
     public static string GetLyrics(string path)
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(path);
-        string adjustedPath = $"../../../{path}";
+        string adjustedPath = Path.Combine("..", "..", "..", path);
         if (!File.Exists(adjustedPath))
         {
             throw new FileNotFoundException(adjustedPath);
@@ -22,8 +22,17 @@ public class FileUtils
             StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); ;
     }
 
-    public static IEnumerable<string> GetCmuDict(string path = "../../../cmudict.txt")
+    public static IEnumerable<string> GetCmuDict(string? path = null)
     {
+        path ??= Path.Combine("..", "..", "..", "cmudict.txt");
+        if (path.Trim().Length is 0)
+        {
+            throw new ArgumentException($"{nameof(path)} cannot be empty or whitespace.");
+        }
+        if (!File.Exists(path))
+        {
+            throw new FileNotFoundException(path);
+        }
         List<string> result = [];
         using (FileStream fileStream = File.Open(path, FileMode.Open)) 
         {

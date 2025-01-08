@@ -12,7 +12,7 @@ details:
 dependencies:
 
 - Spectre.Console
-- some Json editor
+- entity framework core with sqlite
 
 future thoughts:
 

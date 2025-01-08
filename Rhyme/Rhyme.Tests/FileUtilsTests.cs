@@ -12,22 +12,21 @@ public class FileUtilsTests
         // Arrange
 
         // Act
-        string result = FileUtils.GetLyrics("../Rhyme.Tests/test-file.txt");
+        string result = Path.Combine("..", "Rhyme.Tests", "test-file.txt");
 
         // Assert
         Assert.IsFalse(string.IsNullOrEmpty(result));
     }
 
     [TestMethod]
-    [DataRow(null!)]
-    public void GetLyrics_NullPath_ThrowsArgumentNullException(string path)
+    public void GetLyrics_NullPath_ThrowsArgumentNullException()
     {
         // Arrange
 
         // Act
 
         // Assert
-        Assert.ThrowsException<ArgumentNullException>(() => FileUtils.GetLyrics(path));
+        Assert.ThrowsException<ArgumentNullException>(() => FileUtils.GetLyrics(null!));
     }
 
     [TestMethod]
@@ -50,7 +49,7 @@ public class FileUtilsTests
         // Arrange
 
         // Act
-        string path = "../Rhyme.Tests/DOES-NOT-EXIST.txt";
+        string path = Path.Combine("..", "Rhyme.Tests", "DOES-NOT-EXIST.txt");
 
         // Assert
         Assert.ThrowsException<FileNotFoundException>(() => FileUtils.GetLyrics(path));
@@ -103,15 +102,44 @@ public class FileUtilsTests
 
     #endregion GetWordsList tests
 
+    #region GetCmuDict tests
     [TestMethod]
     public void GetCmuDict_Success()
     {
         // Arrange
+        string path = Path.Combine("..", "..", "..", "..", "Rhyme", "cmudict.txt");
 
         // Act
-        IEnumerable<string> dict = FileUtils.GetCmuDict("../../../../Rhyme/cmudict.txt");
+        IEnumerable<string> dict = FileUtils.GetCmuDict(path);
 
         // Assert
         Assert.AreEqual(133311, dict.Count());
     }
+
+    [TestMethod]
+    [DataRow("")]
+    [DataRow("  ")]
+    public void GetCmuDict_EmptyOrWhiteSpacePath_ThrowsArgumentException(string path)
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<ArgumentException>(() => FileUtils.GetCmuDict(path));
+    }
+
+
+    [TestMethod]
+    public void GetCmuDict_InvalidPath_ThrowsFileNotFoundException()
+    {
+        // Arrange
+        string path = Path.Combine("..", "Rhyme.Tests", "DOES-NOT-EXIST.txt");
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<FileNotFoundException>(() => FileUtils.GetCmuDict(path));
+    }
+    #endregion GetCmuDict tests
 }
