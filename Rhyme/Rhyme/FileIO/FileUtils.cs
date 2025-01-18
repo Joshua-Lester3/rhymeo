@@ -2,7 +2,8 @@
 
 public class FileUtils
 {
-    private static readonly string[] _Delimiters = ["\r\n", "\r", "\n", " "];
+    private static readonly string[] s_allDelimiters = ["\r\n", "\r", "\n", " "];
+    private static readonly string[] s_newLineDelimiters = ["\r\n", "\r", "\n"];
     public static string GetLyrics(string path)
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(path);
@@ -18,8 +19,13 @@ public class FileUtils
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(lyrics);
 
-        return lyrics.Split(_Delimiters,
-            StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries); ;
+        return lyrics.Split(s_allDelimiters, StringSplitOptions.RemoveEmptyEntries 
+            | StringSplitOptions.TrimEntries)
+            .Select(s =>
+            {
+                IEnumerable<char> characters = s.Where(c => (char.IsLetter(c) || char.IsNumber(c)));
+                return string.Join(string.Empty, characters);
+            });
     }
 
     public static IEnumerable<string> GetCmuDict(string? path = null)
@@ -34,7 +40,7 @@ public class FileUtils
             throw new FileNotFoundException(path);
         }
         List<string> result = [];
-        using (FileStream fileStream = File.Open(path, FileMode.Open)) 
+        using (FileStream fileStream = File.Open(path, FileMode.Open))
         {
             using (StreamReader sr = new StreamReader(fileStream))
             {
@@ -49,6 +55,18 @@ public class FileUtils
             }
         }
 
+        return result;
+    }
+
+    public static int[] GetNumberOfWordsByLineList(string lyrics)
+    {
+        ArgumentNullException.ThrowIfNullOrWhiteSpace(lyrics);
+        string[] splitString = lyrics.Split(s_newLineDelimiters, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        int[] result = new int[splitString.Length];
+        for (int i = 0; i < splitString.Length; i++)
+        {
+            result[i] = splitString[i].Split(" ", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).Length;
+        }
         return result;
     }
 }

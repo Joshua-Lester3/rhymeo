@@ -1,34 +1,37 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.3">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.3">
   <diagram name="Page-1" id="9eebaCfnpQd0FRLwicni">
-    <mxGraphModel dx="1006" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="794" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="3d-8osv7F8x_KJsWAOE--3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3d-8osv7F8x_KJsWAOE--2" target="3d-8osv7F8x_KJsWAOE--4">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3d-8osv7F8x_KJsWAOE--2" target="3d-8osv7F8x_KJsWAOE--4" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="200" y="195" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--2" value="In: txt file with words to be parsed" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--2" value="In: txt file with words to be parsed" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="10" y="50" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3d-8osv7F8x_KJsWAOE--4" target="3d-8osv7F8x_KJsWAOE--5">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3d-8osv7F8x_KJsWAOE--4" target="3d-8osv7F8x_KJsWAOE--5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--4" value="Convert to word list" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--4" value="Convert to word list" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="160" y="50" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="3d-8osv7F8x_KJsWAOE--5" target="3d-8osv7F8x_KJsWAOE--9">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="3d-8osv7F8x_KJsWAOE--5" target="3d-8osv7F8x_KJsWAOE--9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--5" value="For each word in document, go through following if-else:&lt;div&gt;1. if in json dictionary, take entry from there&lt;/div&gt;&lt;div&gt;2. otherwise take phonemes from cmudict, convert to syllabized phonemes, and get plaintext syllables from google definitions (save to json dict)&lt;/div&gt;&lt;div&gt;Save doc pronunciation &amp;amp; plaintext pronunciation for next step&lt;/div&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="320" y="10" width="240" height="130" as="geometry" />
+        <mxCell id="3d-8osv7F8x_KJsWAOE--5" value="For each word in document, go through following if-else:&lt;div&gt;1. if in rhyme db table, take entry from there&lt;/div&gt;&lt;div&gt;2. otherwise check for it in phoneme table, if it&#39;s there (and since it&#39;s not in rhyme table it won&#39;t be in plain syll table), convert to syllabized phonemes, and get plaintext syllables from google definitions (save to db)&lt;/div&gt;&lt;div&gt;Save doc pronunciation &amp;amp; plaintext pronunciation for next step&lt;/div&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="320" y="10" width="240" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--9" value="Mapping algorithm (found in my other Rhyme repo):&lt;div&gt;1. create list of syllabized phonemes, grouped by word. Get count of phonemes.&lt;/div&gt;&lt;div&gt;2. Have 2d array mapper of scores of rhymes between diff syllables (count x count)&lt;/div&gt;&lt;div&gt;3. have jagged 2d array of matched syllables&#39; indices&lt;/div&gt;&lt;div&gt;4. nested for loop through each syllable pair, score each except between the same syllable, plus add good scores to jagged array&lt;/div&gt;&lt;div&gt;5. go through each syllable and assign colors to matches, wrapping in Syllable class container&lt;/div&gt;&lt;div&gt;6. go through each word (divided into array of phonemes) and convert plain text word into syllabized plain text word&lt;/div&gt;&lt;div&gt;7. replace each pronunciation syllable in syllable class into plaintext syllable, wrap each set of Syllables into another Word wrapper class&lt;/div&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="3d-8osv7F8x_KJsWAOE--9" value="Mapping algorithm (found in my other Rhyme repo):&lt;div&gt;1. create list of syllabized phonemes, grouped by word. Get count of phonemes.&lt;/div&gt;&lt;div&gt;2. Have 2d array mapper of scores of rhymes between diff syllables (count x count)&lt;/div&gt;&lt;div&gt;3. have jagged 2d array of matched syllables&#39; indices&lt;/div&gt;&lt;div&gt;4. nested for loop through each syllable pair, score each except between the same syllable, plus add good scores to jagged array&lt;/div&gt;&lt;div&gt;5. go through each syllable and assign colors to matches, wrapping in Syllable class container&lt;/div&gt;&lt;div&gt;6. go through each word (divided into array of phonemes) and convert plain text word into syllabized plain text word&lt;/div&gt;&lt;div&gt;7. replace each pronunciation syllable in syllable class into plaintext syllable, wrap each set of Syllables into another Word wrapper class&lt;/div&gt;" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="590" y="150" width="250" height="310" as="geometry" />
         </mxCell>
-        <mxCell id="3d-8osv7F8x_KJsWAOE--11" value="with current implementation in mind (converting pronounced word into phonemes algorithmically), these may not line up for perfect rhymes" style="label;fontStyle=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;overflow=hidden;spacingLeft=28;spacingRight=4;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;imageWidth=16;imageHeight=16;whiteSpace=wrap;html=1;image=img/clipart/Gear_128x128.png" vertex="1" parent="1">
-          <mxGeometry x="320" y="140" width="237.5" height="70" as="geometry" />
+        <mxCell id="3d-8osv7F8x_KJsWAOE--11" value="with current implementation in mind (converting pronounced word into phonemes algorithmically), these may not line up for perfect rhymes" style="label;fontStyle=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;overflow=hidden;spacingLeft=28;spacingRight=4;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;imageWidth=16;imageHeight=16;whiteSpace=wrap;html=1;image=img/clipart/Gear_128x128.png" parent="1" vertex="1">
+          <mxGeometry x="320" y="170" width="237.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="j_Riq5m-mpxCWQmBjOR4-1" value="Overall Process" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry y="10" width="110" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

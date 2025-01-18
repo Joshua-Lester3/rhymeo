@@ -83,15 +83,30 @@ public class FileUtilsTests
     }
 
     [TestMethod]
-    [DataRow("hello\ni'm mark", new string[] { "hello", "i'm", "mark" })]
-    [DataRow("hello\ni'm jimbob the third  ", new string[] { "hello", "i'm", "jimbob", "the", "third" })]
-    [DataRow("hello\ni'm mark the fourth   \n", new string[] { "hello", "i'm", "mark", "the", "fourth" })]
-    [DataRow("\nhello\ni'm mark the fourth   \n", new string[] { "hello", "i'm", "mark", "the", "fourth" })]
+    [DataRow("hello\nim mark", new string[] { "hello", "im", "mark" })]
+    [DataRow("hello\nim jimbob the third  ", new string[] { "hello", "im", "jimbob", "the", "third" })]
+    [DataRow("hello\nim mark the fourth   \n", new string[] { "hello", "im", "mark", "the", "fourth" })]
+    [DataRow("\nhello\nim mark the fourth   \n", new string[] { "hello", "im", "mark", "the", "fourth" })]
 
     public void GetWordsList_DifferingAmountOfLinesAndWords_ReturnsCorrectWordsAndCount(string lyrics, string[] result)
     {
         // Arrange
 
+        // Act
+        var wordsList = FileUtils.GetWordsList(lyrics).ToList();
+
+        // Assert
+        CollectionAssert.AreEquivalent(result, wordsList);
+    }
+
+    [TestMethod]
+    [DataRow("hiya!", new string[] { "hiya" })]
+    [DataRow("jimbob, the 3rd?", new string[] { "jimbob", "the", "3rd" })]
+    [DataRow("skibididoowop.", new string[] { "skibididoowop" })]
+    [DataRow("abcd/=efg", new string[] { "abcdefg" })]
+    public void GetWordsList_WithNonAlphanumericCharacters_RemovesThem(string lyrics, string[] result)
+    {
+        // Arrange
 
         // Act
         var wordsList = FileUtils.GetWordsList(lyrics).ToList();
@@ -142,4 +157,48 @@ public class FileUtilsTests
         Assert.ThrowsException<FileNotFoundException>(() => FileUtils.GetCmuDict(path));
     }
     #endregion GetCmuDict tests
+
+    #region GetNumberOfWordsByLineList tests
+
+    [TestMethod]
+    [DataRow("hello my name is joshua\n and   my name jimmy\n\n", new int[] {5, 4})]
+    [DataRow("\nhellomy name is joshua\n and   my name jimmy\nhallo\n", new int[] { 4, 4, 1})]
+    [DataRow("hello my name is jo", new int[] { 5 })]
+    [DataRow("", new int[] { })]
+    public void GetNumberOfWordsByLineList_VariableLength_Success(string lyrics, int[] result)
+    {
+        // Arrange
+
+        // Act
+        int[] numberOfWordsByLine = FileUtils.GetNumberOfWordsByLineList(lyrics);
+
+        // Assert
+        CollectionAssert.AreEquivalent(result, numberOfWordsByLine);
+    }
+
+    [TestMethod]
+    [DataRow("")]
+    [DataRow("  ")]
+    public void GetNumberOfWordsByLineList_EmptyOrWhiteSpaceLyrics_ThrowsArgumentException(string lyrics)
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<ArgumentException>(() => FileUtils.GetNumberOfWordsByLineList(lyrics));
+    }
+
+    [TestMethod]
+    public void GetNumberOfWordsByLineList_NullArgument_ThrowsArgumentNullException()
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<ArgumentNullException>(() => FileUtils.GetNumberOfWordsByLineList(null!));
+    }
+
+    #endregion GetNumberOfWordsByLineList tests
 }
