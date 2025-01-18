@@ -20,7 +20,9 @@ future thoughts:
 - allow for different file types like docx?
 
 process:
-![diagram](./diagram.png)
+
+<img src="./diagram.png" alt="diagram" width="800" height="700">
+
 
 items:
 
