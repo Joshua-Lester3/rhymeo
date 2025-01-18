@@ -11,7 +11,7 @@ public class Program
         await Seeder.Seed(db);
 
         Console.WriteLine("\n\n\nTEST!!!!!!!\n\n\n");
-        var result = db.WordsWithPhonemes.Where(w => w.Word.ToLower().StartsWith("z")).Take(10);
+        var result = db.Rhymes.Where(w => w.Word.StartsWith("Z")).Take(10);
         foreach (var word in result)
         {
             Console.WriteLine(word.Word);

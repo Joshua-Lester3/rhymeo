@@ -16,6 +16,29 @@ namespace Rhyme.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
 
+            modelBuilder.Entity("Rhyme.Models.Rhyme", b =>
+                {
+                    b.Property<int>("RhymeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("PhonemeSyllables")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.PrimitiveCollection<string>("PlainSyllables")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("RhymeId");
+
+                    b.ToTable("Rhymes");
+                });
+
             modelBuilder.Entity("Rhyme.Models.WordWithPhonemes", b =>
                 {
                     b.Property<int>("WordWithPhonemesId")

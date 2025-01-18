@@ -1,4 +1,5 @@
 ﻿using Rhyme.FileIO;
+using System.IO;
 
 namespace Rhyme.Tests;
 
@@ -164,7 +165,6 @@ public class FileUtilsTests
     [DataRow("hello my name is joshua\n and   my name jimmy\n\n", new int[] {5, 4})]
     [DataRow("\nhellomy name is joshua\n and   my name jimmy\nhallo\n", new int[] { 4, 4, 1})]
     [DataRow("hello my name is jo", new int[] { 5 })]
-    [DataRow("", new int[] { })]
     public void GetNumberOfWordsByLineList_VariableLength_Success(string lyrics, int[] result)
     {
         // Arrange
@@ -204,7 +204,44 @@ public class FileUtilsTests
 
     #region GetPlainSyllableDict tests
 
-    // test this stuff
+    [TestMethod]
+    [DataRow("")]
+    [DataRow("  ")]
+    public void GetPlainSyllableDict_EmptyOrWhiteSpacePath_ThrowsArgumentException(string path)
+    {
+        // Arrange
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<ArgumentException>(() => FileUtils.GetPlainSyllableDict(path));
+    }
+
+
+    [TestMethod]
+    public void GetPlainSyllableDict_InvalidPath_ThrowsFileNotFoundException()
+    {
+        // Arrange
+        string path = Path.Combine("..", "Rhyme.Tests", "DOES-NOT-EXIST.txt");
+
+        // Act
+
+        // Assert
+        Assert.ThrowsException<FileNotFoundException>(() => FileUtils.GetPlainSyllableDict(path));
+    }
+
+    [TestMethod]
+    public void GetPlainSyllableDict_CorrectPath_ReturnCorrectListLength()
+    {
+        // Arrange
+        string path = Path.Combine("..", "..", "..", "..", "Rhyme", "syllabledict.txt");
+
+        // Act
+        var result = FileUtils.GetPlainSyllableDict(path);
+
+        // Assert
+        Assert.AreEqual(24412, result.Count());
+    }
 
     #endregion GetPlainSyllableDict tests
 }

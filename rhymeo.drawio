@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.3">
   <diagram name="Page-1" id="9eebaCfnpQd0FRLwicni">
-    <mxGraphModel dx="794" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -47,6 +47,18 @@
         </mxCell>
         <mxCell id="j_Riq5m-mpxCWQmBjOR4-16" value="Adding phonemes: this would probably have to be done through ML/DL. either through voice recognition or converting english words to their respective phonemes. the latter would be helpful for lyrics, but the former helpful for actually hearing a song&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Adding plain sylls: either through scraping google&#39;s definitions (as they have almost every word plain text syllabized) or maybe ML/DL&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;notes: probably more likely that you need the latter as it&#39;s 133k vs 24k dict word counts&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="320" y="460" width="160" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="j_Riq5m-mpxCWQmBjOR4-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="j_Riq5m-mpxCWQmBjOR4-23" target="j_Riq5m-mpxCWQmBjOR4-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="j_Riq5m-mpxCWQmBjOR4-23" value="ML/DL thoughts:&lt;div&gt;Probably will need ML/DL for three processes:&lt;/div&gt;&lt;div&gt;1. voice to plain text&lt;/div&gt;&lt;div&gt;2. voice to phonemes (probably can syllabize roughly from here)&lt;/div&gt;&lt;div&gt;3. syllabizing word if do not have in db&lt;/div&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="570" y="560" width="230" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="j_Riq5m-mpxCWQmBjOR4-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="j_Riq5m-mpxCWQmBjOR4-24" target="j_Riq5m-mpxCWQmBjOR4-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="j_Riq5m-mpxCWQmBjOR4-24" value="current thoughts:&lt;div&gt;1. find voice recognition library/software&lt;/div&gt;&lt;div&gt;2. build off of cmu sphinx to create voice to phonemes&lt;/div&gt;&lt;div&gt;3. maybe use ML project for this&lt;/div&gt;" style="html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="550" y="760" width="270" height="150" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

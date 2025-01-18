@@ -60,7 +60,7 @@ public class FileUtils
 
     public static IEnumerable<string> GetPlainSyllableDict(string? path = null)
     {
-        path ??= Path.Combine("..", "..", "..", "syllablesdict.txt");
+        path ??= Path.Combine("..", "..", "..", "syllabledict.txt");
 
         if (path.Trim().Length is 0)
         {
@@ -70,6 +70,7 @@ public class FileUtils
         {
             throw new FileNotFoundException(path);
         }
+        return File.ReadAllText(path).Split(s_newLineDelimiters, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
     }
 
     public static int[] GetNumberOfWordsByLineList(string lyrics)
