@@ -58,6 +58,20 @@ public class FileUtils
         return result;
     }
 
+    public static IEnumerable<string> GetPlainSyllableDict(string? path = null)
+    {
+        path ??= Path.Combine("..", "..", "..", "syllablesdict.txt");
+
+        if (path.Trim().Length is 0)
+        {
+            throw new ArgumentException($"{nameof(path)} cannot be empty or whitespace.");
+        }
+        if (!File.Exists(path))
+        {
+            throw new FileNotFoundException(path);
+        }
+    }
+
     public static int[] GetNumberOfWordsByLineList(string lyrics)
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(lyrics);

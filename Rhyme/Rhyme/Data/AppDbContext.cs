@@ -6,6 +6,8 @@ namespace Rhyme.Data;
 public class AppDbContext : DbContext
 {
     public DbSet<WordWithPhonemes> WordsWithPhonemes { get; set; }
+    public DbSet<WordWithPlainSyllables> WordsWithPlainSyllables { get; set; }
+
 
     public string DbPath { get; }
 

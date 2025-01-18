@@ -34,6 +34,25 @@ namespace Rhyme.Migrations
 
                     b.ToTable("WordsWithPhonemes");
                 });
+
+            modelBuilder.Entity("Rhyme.Models.WordWithPlainSyllables", b =>
+                {
+                    b.Property<int>("WordWithPlainSyllablesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.PrimitiveCollection<string>("Syllables")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Word")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("WordWithPlainSyllablesId");
+
+                    b.ToTable("WordsWithPlainSyllables");
+                });
 #pragma warning restore 612, 618
         }
     }

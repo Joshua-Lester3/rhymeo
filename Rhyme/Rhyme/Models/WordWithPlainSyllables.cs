@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Rhyme.Models
+namespace Rhyme.Models;
+
+public class WordWithPlainSyllables
 {
-    internal class WordWithPlainSyllables
-    {
-    }
+    public int WordWithPlainSyllablesId { get; set; }
+    [Required]
+    public required string Word { get; set; }
+    [Required]
+    public required string[] Syllables { get; set; }
 }

@@ -28,5 +28,9 @@ public class Seeder
             }
             await db.SaveChangesAsync();
         }
+        if (!db.WordsWithPlainSyllables.Any())
+        {
+
+        }
     }
 }
