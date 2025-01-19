@@ -30,7 +30,7 @@ public class FileUtils
 
     public static IEnumerable<string> GetCmuDict(string? path = null)
     {
-        path ??= Path.Combine("..", "..", "..", "cmudict.txt");
+        path ??= Path.Combine("..", "..", "..", "cmudict-2.txt");
         if (path.Trim().Length is 0)
         {
             throw new ArgumentException($"{nameof(path)} cannot be empty or whitespace.");
@@ -47,7 +47,7 @@ public class FileUtils
                 string? line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (!line.StartsWith(";;;"))
+                    if (!line.StartsWith("##"))
                     {
                         result.Add(line);
                     }

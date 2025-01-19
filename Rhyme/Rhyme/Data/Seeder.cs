@@ -26,7 +26,7 @@ public class Seeder
                 WordWithPhonemes wordWithPhonemes = new()
                 {
                     Word = pair[0],
-                    Phonemes = pair[1].Split(" ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                    Phonemes = pair[1].Split(" - ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
                 };
                 Console.WriteLine(wordWithPhonemes.Word);
                 await db.WordsWithPhonemes.AddAsync(wordWithPhonemes);

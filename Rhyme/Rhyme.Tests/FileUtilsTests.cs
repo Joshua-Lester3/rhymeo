@@ -123,13 +123,13 @@ public class FileUtilsTests
     public void GetCmuDict_Success()
     {
         // Arrange
-        string path = Path.Combine("..", "..", "..", "..", "Rhyme", "cmudict.txt");
+        string path = Path.Combine("..", "..", "..", "..", "Rhyme", "cmudict-2.txt");
 
         // Act
         IEnumerable<string> dict = FileUtils.GetCmuDict(path);
 
         // Assert
-        Assert.AreEqual(133311, dict.Count());
+        Assert.AreEqual(129482, dict.Count());
     }
 
     [TestMethod]
